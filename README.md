@@ -12,6 +12,6 @@ Installation Windows
  * follow this [link](http://www.graphicsmagick.org/INSTALL-windows.html)
 
 Usage
- * Simply run `directory-images-cropper/crop -h`
+ * Simply run `directory-images-cropper -h`
 
 
