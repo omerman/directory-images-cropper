@@ -14,6 +14,7 @@ program
   .option('-i, --inputDir <path>', 'Assets source directory')
   .option('-o, --outputDir <path>', 'Assets output directory')
   .option('--cropSize [number]', 'crop size', parseInt, 400)
+  .option('-e, --extensions [comma separated extenstions]', 'crop size', 'jpg,jpeg,png,gif')
   .parse(process.argv);
 
 requiredArg('--inputDir', program.inputDir);
@@ -23,4 +24,5 @@ crop({
   inputDir: program.inputDir,
   outputDir: program.outputDir,
   cropSize: program.cropSize,
+  extensions: program.extensions.split(',').map(val => val.trim()),
 });

@@ -1,12 +1,18 @@
 const imagemagick = require('gm');
 const fs = require('fs');
 
-const crop = ({ inputDir, outputDir, cropSize }) => {
+const crop = ({ inputDir, outputDir, cropSize, extensions }) => {
   fs.readdir(inputDir, (readError, files) => {
     if (readError) {
       throw new Error(`couldnt read ${inputDir}`, readError);
     }
     files.forEach((file) => {
+      const ext = file.substr(file.lastIndexOf('.')).substr(1);
+      const skipExension = extensions.indexOf(ext) === -1;
+      if (skipExension) {
+        return;
+      }
+
       imagemagick(`${inputDir}/${file}`)
         .size((sizeErr, size) => {
           if (sizeErr) {
