@@ -10,8 +10,8 @@ Installation (see [here](https://github.com/aheckmann/gm) for more)
 Installation Windows
  * `npm i directory-images-cropper`
  * follow this [link](http://www.graphicsmagick.org/INSTALL-windows.html)
- 
+
 Usage
- * Simply run `directory-images-cropper -h`
- 
- 
+ * Simply run `directory-images-cropper/crop -h`
+
+
