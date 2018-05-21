@@ -1,7 +1,9 @@
 const imagemagick = require('gm');
 const fs = require('fs');
+const resizeGif = require('./gif/resize');
+const cropGif = require('./gif/crop');
 
-const crop = ({ inputDir, outputDir, cropSize, extensions }) => {
+const directoryImagesCrop = ({ inputDir, outputDir, cropSize, extensions }) => {
   fs.readdir(inputDir, (readError, files) => {
     if (readError) {
       throw new Error(`couldnt read ${inputDir}`, readError);
@@ -34,7 +36,16 @@ const crop = ({ inputDir, outputDir, cropSize, extensions }) => {
             xCrop = (widthResize - cropSize) / 2;
           }
 
-          imagemagick(`${inputDir}/${file}`)
+          if (ext === 'gif') {
+            resizeGif(`${inputDir}/${file}`, `${outputDir}/${file}`, widthResize, heightResize);
+            cropGif(`${outputDir}/${file}`, `${outputDir}/${file}`, {
+              x: xCrop,
+              y: yCrop,
+              cropSize
+            });
+            console.log(`cropping successfull: ${outputDir}/${file}`);
+          } else {
+            imagemagick(`${inputDir}/${file}`)
             .resize(widthResize, heightResize)
             .crop(cropSize, cropSize, xCrop, yCrop)
             .write(`${outputDir}/${file}`, (cropErr) => {
@@ -43,9 +54,10 @@ const crop = ({ inputDir, outputDir, cropSize, extensions }) => {
               }
               console.log(`cropping successfull: ${outputDir}/${file}`);
             });
+          }
         });
     });
   });
 };
 
-module.exports = crop;
+module.exports = directoryImagesCrop;

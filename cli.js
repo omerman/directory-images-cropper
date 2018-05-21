@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const program = require('commander');
-const crop = require('./crop');
+const directoryImagesCropper = require('./directory-images-cropper');
 
 const requiredArg = (argName, argValue) => {
   if (argValue === undefined) {
@@ -20,7 +20,7 @@ program
 requiredArg('--inputDir', program.inputDir);
 requiredArg('--outputDir', program.outputDir);
 
-crop({
+directoryImagesCropper({
   inputDir: program.inputDir,
   outputDir: program.outputDir,
   cropSize: program.cropSize,
