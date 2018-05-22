@@ -14,4 +14,6 @@ Installation Windows
 Usage
  * Simply run `directory-images-cropper -h`
 
-
+Currently supported extensions:
+ * `jpg, png, gif`
+ * More extensions maybe supported, need to verify that. feel free to check for youselfs and Ill modify the list.
